@@ -12,7 +12,7 @@ class Emoji(SampleBase):
 
     def run(self):
         images = []
-        for (dirpath, dirnames, filenames) in os.walk("../cutouts"):
+        for (dirpath, dirnames, filenames) in os.walk("../../cutouts"):
             for filename in filenames:
                 if filename.endswith('.png'):
                     image = os.sep.join([dirpath, filename])
@@ -29,7 +29,7 @@ class Emoji(SampleBase):
             if pos > images_amount:
                 pos = 0
 
-            image = image[pos]
+            image = images[pos]
 
             double_buffer.SetImage(image)
 
