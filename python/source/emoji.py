@@ -15,7 +15,8 @@ class Emoji(SampleBase):
         for (dirpath, dirnames, filenames) in os.walk("../../cutouts"):
             for filename in filenames:
                 if filename.endswith('.png'):
-                    image = os.sep.join([dirpath, filename])
+                    image_file = os.sep.join([dirpath, filename])
+                    image = Image.open(image_file).convert('RGB')
                     image.resize((self.matrix.width, self.matrix.height), Image.ANTIALIAS)
                     images.append(image)
 
