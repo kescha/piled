@@ -27,7 +27,7 @@ class Emoji(SampleBase):
         pos = 0
         while True:
             pos += 1
-            if pos > images_amount:
+            if pos >= images_amount:
                 pos = 0
 
             image = images[pos]
