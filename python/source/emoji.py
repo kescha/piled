@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 import time
 import os
 from samplebase import SampleBase
@@ -17,7 +17,7 @@ class Emoji(SampleBase):
                 if filename.endswith('.png'):
                     image_file = os.sep.join([dirpath, filename])
                     image = Image.open(image_file).convert('RGB')
-                    image.resize((self.matrix.width, self.matrix.height), Image.ANTIALIAS)
+                    image = image.resize((self.matrix.width, self.matrix.height), Image.ANTIALIAS)
                     images.append(image)
 
         double_buffer = self.matrix.CreateFrameCanvas()
@@ -35,7 +35,7 @@ class Emoji(SampleBase):
             double_buffer.SetImage(image)
 
             double_buffer = self.matrix.SwapOnVSync(double_buffer)
-            time.sleep(0.01)
+            time.sleep(1)
 
 
 # Main function
