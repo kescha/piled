@@ -2,6 +2,7 @@
 import time
 import os
 from samplebase import SampleBase
+from rgbmatrix import graphics
 from PIL import Image
 
 
@@ -17,10 +18,17 @@ class Emoji(SampleBase):
                 if filename.endswith('.png'):
                     image_file = os.sep.join([dirpath, filename])
                     image = Image.open(image_file).convert('RGB')
-                    image = image.resize((self.matrix.width, self.matrix.height), Image.ANTIALIAS)
+                    image = image.resize((48, 48), Image.ANTIALIAS)
                     images.append(image)
 
         double_buffer = self.matrix.CreateFrameCanvas()
+
+
+        # fonts
+        font = graphics.Font()
+        font.LoadFont("../../fonts/7x13.bdf")
+        text_color = graphics.Color(255, 255, 0)
+        my_text = "25C°"
 
         # let's scroll
         images_amount = len(images)
@@ -33,6 +41,8 @@ class Emoji(SampleBase):
             image = images[pos]
 
             double_buffer.SetImage(image)
+
+            graphics.DrawText(double_buffer, font, 49, 0, text_color, my_text)
 
             double_buffer = self.matrix.SwapOnVSync(double_buffer)
             time.sleep(1)
