@@ -40,11 +40,12 @@ class Emoji(SampleBase):
                 pos = 0
 
             image = images[pos]
+            double_buffer.Clear()
 
             double_buffer.SetImage(image, 0, 12)
 
             weather_data = fetch_weather("45128")
-            graphics.DrawText(double_buffer, font, 37, 10, text_color, my_text.format(weather_data['main']['temp']))
+            graphics.DrawText(double_buffer, font, 20, 10, text_color, my_text.format(weather_data['main']['temp']))
 
             double_buffer = self.matrix.SwapOnVSync(double_buffer)
             time.sleep(20)
