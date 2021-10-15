@@ -4,6 +4,7 @@ import os
 from samplebase import SampleBase
 from rgbmatrix import graphics
 from PIL import Image
+from weather import fetch_weather
 
 
 class Emoji(SampleBase):
@@ -28,7 +29,7 @@ class Emoji(SampleBase):
         font = graphics.Font()
         font.LoadFont("../../fonts/6x13.bdf")
         text_color = graphics.Color(255, 255, 0)
-        my_text = "25°C"
+        my_text = "{0}°C"
 
         # let's scroll
         images_amount = len(images)
@@ -42,10 +43,11 @@ class Emoji(SampleBase):
 
             double_buffer.SetImage(image, 0, 12)
 
-            graphics.DrawText(double_buffer, font, 37, 10, text_color, my_text)
+            weather_data = fetch_weather("45128")
+            graphics.DrawText(double_buffer, font, 37, 10, text_color, my_text.format(weather_data['main']['temp']))
 
             double_buffer = self.matrix.SwapOnVSync(double_buffer)
-            time.sleep(1)
+            time.sleep(20)
 
 
 # Main function
