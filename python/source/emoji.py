@@ -26,9 +26,9 @@ class Emoji(SampleBase):
 
         # fonts
         font = graphics.Font()
-        font.LoadFont("../../fonts/7x13.bdf")
+        font.LoadFont("../../fonts/6x13.bdf")
         text_color = graphics.Color(255, 255, 0)
-        my_text = "25C°"
+        my_text = "25°C"
 
         # let's scroll
         images_amount = len(images)
@@ -40,9 +40,9 @@ class Emoji(SampleBase):
 
             image = images[pos]
 
-            double_buffer.SetImage(image)
+            double_buffer.SetImage(image, 0, 12)
 
-            graphics.DrawText(double_buffer, font, 49, 0, text_color, my_text)
+            graphics.DrawText(double_buffer, font, 37, 10, text_color, my_text)
 
             double_buffer = self.matrix.SwapOnVSync(double_buffer)
             time.sleep(1)
